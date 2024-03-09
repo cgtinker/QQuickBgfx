@@ -8,7 +8,7 @@
 #include <qquick_bgfx.h>
 #include <bx/bounds.h>
 #include <bx/math.h>
-#include <debugdraw/debugdraw.h>
+// #include <debugdraw/debugdraw.h>
 
 //init_example initialize bgfx from a gien bgfx::Init
 void init_example(const bgfx::Init& init)
@@ -18,7 +18,7 @@ void init_example(const bgfx::Init& init)
         bgfx::renderFrame();
         bgfx::init(init);
         bgfx::setDebug(BGFX_DEBUG_TEXT);
-        ddInit();
+        // ddInit();
     }
 }
 
@@ -59,14 +59,14 @@ void render_example(const std::vector<QQuickBgfxItem*>& bgfxItems)
 
             float mtx[16];
             bx::mtxRotateXY(mtx, time, time);
-            DebugDrawEncoder dde;
-            dde.begin(item->viewId());
-            dde.drawCapsule({-2.0f, -2.0f, 0.0f}, {-2.0f, 0.0f, 0.0f}, 1.0);
-            dde.drawCone({3.0f, -2.0f, 0.0f}, {3.0f, 2.0f, 0.0f}, 1.0f);
-            dde.drawAxis(0.0f, 0.0f, 0.0f);
-            dde.setTransform(&mtx);
-            dde.draw(bx::Aabb{{0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}});
-            dde.end();
+            // DebugDrawEncoder dde;
+            // dde.begin(item->viewId());
+            // dde.drawCapsule({-2.0f, -2.0f, 0.0f}, {-2.0f, 0.0f, 0.0f}, 1.0);
+            // dde.drawCone({3.0f, -2.0f, 0.0f}, {3.0f, 2.0f, 0.0f}, 1.0f);
+            // dde.drawAxis(0.0f, 0.0f, 0.0f);
+            // dde.setTransform(&mtx);
+            // dde.draw(bx::Aabb{{0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}});
+            // dde.end();
         }
     }
 }

@@ -1,0 +1,15 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+    "name": "cgtengine",
+    "version": "0.0.1",
+    "maintainers": [
+        "Denys Hsu <hello@cgtinker.com>"
+    ],
+    "license": "GPL-2.0-or-later",
+    "dependencies": [
+        "qtbase",
+        "qtgraphs",
+        "bgfx"
+    ],
+    "builtin-baseline": "bfe8c13a89dfc6d360a9db7fa9d91cb50c58d52b"
+}

@@ -1,21 +1,20 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.25)
 project(BgfxQQuickItemExample LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
+find_package(Qt6 COMPONENTS Quick Gui REQUIRED)
+find_package(bgfx COMPONENTS REQUIRED)
+
+qt_standard_project_setup(REQUIRES 6.5)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 set(INSTALL_EXAMPLEDIR "BgfxQQuickItemExample")
-
-find_package(Qt6 COMPONENTS Core)
-find_package(Qt6 COMPONENTS Gui)
-find_package(Qt6 COMPONENTS Qml)
-find_package(Qt6 COMPONENTS Quick)
+set(CMAKE_TOOLCHAIN_FILE "./vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 
 set(SOURCES
-
     main.cpp
     src/qquickbgfxitem/qquickbgfxitem.h
     src/qquickbgfxitem/qquickbgfxitem.cpp
@@ -25,6 +24,7 @@ set(SOURCES
     src/qsgbgfxnode/qsgbgfxnode.h
     src/qsgbgfxnode/qsgbgfxnode.cpp
 )
+
 if(APPLE)
     set(SOURCES
         ${SOURCES}
@@ -39,30 +39,25 @@ if(WIN32)
     )
 endif()
 
-
 qt_add_executable(BgfxQQuickItemExample
     ${SOURCES}
 )
 
-
-
 target_link_libraries(BgfxQQuickItemExample PUBLIC
     "-framework Metal"
-    Qt::Core
-    Qt::Gui
-    Qt::Qml
-    Qt::Quick
-    Qt::QuickPrivate
-    bgfx
-    bimg
-    example-common
+    Qt6::Gui
+    Qt6::Qml
+    Qt6::Quick
+    Qt6::QuickPrivate
+    bgfx::bgfx
+    bgfx::bimg
 )
 
 target_include_directories(BgfxQQuickItemExample
-                            PUBLIC
-                            ${CMAKE_SOURCE_DIR}/src
-                            ${CMAKE_SOURCE_DIR}/src/qquickbgfxitem
-                            )
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_SOURCE_DIR}/src/qquickbgfxitem
+)
 
 # Resources:
 set(BgfxQQuickItemExample_resource_files
@@ -71,9 +66,9 @@ set(BgfxQQuickItemExample_resource_files
 
 qt6_add_resources(BgfxQQuickItemExample "BgfxQQuickItemExample"
     PREFIX
-        "/BgfxQQuickItemExample"
+    "/BgfxQQuickItemExample"
     FILES
-        ${BgfxQQuickItemExample_resource_files}
+    ${BgfxQQuickItemExample_resource_files}
 )
 
 if(MACOS)
@@ -94,9 +89,7 @@ set_target_properties(BgfxQQuickItemExample PROPERTIES
 )
 
 qt_add_qml_module(BgfxQQuickItemExample
-                  URI QQuickBgfx
-                  VERSION 1.0
-                  QML_FILES main.qml
-                  )
-add_subdirectory(deps)
-
+    URI QQuickBgfx
+    VERSION 1.0
+    QML_FILES main.qml
+)
